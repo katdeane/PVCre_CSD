@@ -1,42 +1,36 @@
-% Pipeline - FMR1 Comparison Study ~( °٢° )~
+% Pipeline - PV Cre Study
 
-% This is the master script for the FMR1 KO and WT study, run by Katrina
-% Deane at University of California, Riverside in Khaleel Razak's lab in
+% This is the master script for the project, run by Mawaheb Kassir
+% at University of California, Riverside in Khaleel Razak's lab in
 % the Psychology Department. 
 
 % The overall goal of this study is to characterize A1 laminar differences
-% between groups. FMR1 KOs have auditory hypersensitivity and in vitro it
-% was found that their layer 2/3 and 5 were more synchronized in response
-% to stimulation in layer 2/3 specifically (Goswami 2019, Neurobiol Dis)
+% after PV silencing with DREADD. 
 
 %% Get started
 
 clear; clc;
 
 % set working directory; change for your station
-if exist('F:\CSD_Riverside','dir')
-    cd('F:\CSD_Riverside'); 
-elseif exist('D:\CSD_Riverside','dir')
-    cd('D:\CSD_Riverside'); 
+if exist('F:\PVCre_CSD','dir')
+    cd('F:\PVCre_CSD'); 
+elseif exist('D:\PVCre_CSD','dir')
+    cd('D:\PVCre_CSD'); 
 else
     error('add your local repository as shown above')
 end
-homedir = pwd;
-addpath(genpath(homedir));
+
+homedir = pwd; % call up the working directory
+addpath(genpath(homedir)); % add the whole directory to path
 
 % set consistently needed variables
-Groups = {'MKO' 'MWT'};
-% Condition = {'Tonotopy'};
-Condition = {'NoiseBurst' 'Tonotopy' 'Spontaneous' 'ClickTrain' 'Chirp' ...
-    'gapASSR' 'postNoise' 'postSpont'};
+Groups = {'PVE'}; % probably 'PVC' for control group
+Condition = {'NoiseBurst1' 'gapASSR' 'ClickTrain' 'NoiseBurst2' 'Spontaneous'};
 
 %% Data generation per subject ⊂◉‿◉つ
 
 % per subject CSD Script
 DynamicCSD(homedir, Condition)
-
-% per subject Spike Script
-% DynamicSpike(homedir, Condition)
 
 %% Group pics (⌐▨_▨)
 
@@ -49,16 +43,6 @@ for iGro = 1:length(Groups)
         toc
     end
 end
-
-% generate group averaged spike heatmaps based on stimuli (does not BF sort)
-% for iGro = 1:length(Groups)
-%     for iST = 1:length(Condition)
-%         disp(['Average Heatmaps for ' Groups{iGro} ' ' Condition{iST}])
-%         tic
-%         AvgSpikefig(homedir, Groups{iGro}, Condition{iST})
-%         toc
-%     end
-% end
 
 
 %% trial-averaged AVREC and layer trace generation / peak detection ┏ʕ •ᴥ•ʔ┛
@@ -74,17 +58,15 @@ end
 
 %% Group AVREC and layer traces / average peak detection ʕ ◕ᴥ◕ ʔ
 
-% work in progress: 
-
-% disp('Producing group-averaged traces for each group')
-% for iGro = 1:length(Groups)
-%     for iST = 1:length(Condition)
-%         disp(['Group traces for ' Group{iGro} ' ' Condition{iST}])
-%         tic 
-%         Group_Avrec_Layers(homedir, Groups{iGro}, Condition{iST})
-%         toc
-%     end
-% end
+disp('Producing group-averaged traces for each group')
+for iGro = 1:length(Groups)
+    for iST = 1:length(Condition)
+        disp(['Group traces for ' Group{iGro} ' ' Condition{iST}])
+        tic 
+        Group_Avrec_Layers(homedir, Groups{iGro}, Condition{iST})
+        toc
+    end
+end
 
 
 %% CWT analysis 
