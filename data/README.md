@@ -1,7 +1,7 @@
 Data here come from the conversion neuronexus software, Curate. They should be in the following format: 
 
 subjectID_measurement number_LFP —> AAA##_##_LFP
- - or - 
+
 subjectID_measurement number_Spike —> AAA##_##_Spike
 
 with 3 files per measurement —> *xdat.json, *_data.xdat, *_timestamp.xdat
