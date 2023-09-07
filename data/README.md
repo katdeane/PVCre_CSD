@@ -7,9 +7,9 @@ subjectID_measurement number_Spike —> AAA##_##_Spike
 with 3 files per measurement —> *xdat.json, *_data.xdat, *_timestamp.xdat
 
 e.g. 
-MKO01_01_LFP.xdat.json
-MKO01_01_LFP_data.xdat
-MKO01_01_LFP_timestamp.xdat
-MKO01_01_Spike.xdat.json
-MKO01_01_Spike_data.xdat
-MKO01_01_Spike_timestamp.xdat
+- MKO01_01_LFP.xdat.json
+- MKO01_01_LFP_data.xdat
+- MKO01_01_LFP_timestamp.xdat
+- MKO01_01_Spike.xdat.json
+- MKO01_01_Spike_data.xdat
+- MKO01_01_Spike_timestamp.xdat
