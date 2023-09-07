@@ -1,0 +1,10 @@
+*.asv
+*.json
+*.xdat
+*.mat
+*.fig
+*.pdf
+*.png
+*.csv
+*.doc
+*.docx
