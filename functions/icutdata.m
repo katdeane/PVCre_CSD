@@ -30,12 +30,13 @@ stimITI = stimdur+ITI; % ms
 
 %% stack or source the pseudorandom list
 
-if matches(thistype, 'Tonotopy') || matches(thistype, 'ClickRate') ...
-        || matches(thistype, 'gapASSRRate')
+if matches(thistype, 'ClickRatePV') ...
+        || matches(thistype, 'GapASSRRatePV')
     % pre-psuedorandomized tone list for this subject
     stimList = readmatrix([file(1:6) thistype '.txt'])';
     shortlist = unique(stimList);
-    shortlist = shortlist(shortlist ~= 0);
+    shortlist = shortlist(shortlist ~= 0); % remove dead row gapassr
+    shortlist = shortlist(shortlist ~= 1000); % remove dead row clickrate
 
     % this should match or something is wrong
     if length(shortlist) ~= length(checkStimList); error('stimlist doesnt match'); end

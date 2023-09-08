@@ -99,7 +99,7 @@ for i_In = 1:entries
                 title([num2str(stimList(iStim)) ' ' thisUnit])
             end
             
-            if contains('All',layers{iLay}) && iStim==6 && contains('NoiseBurst',Condition)
+            if contains('All',layers{iLay}) && matches('NoiseBurst1',Condition)
                 % only for the avrec 70 dB noiseburst;
                 % store the highest peak of each measurement for later correction;
                 % correction will be per animal so all layers
@@ -126,7 +126,7 @@ for i_In = 1:entries
                 for itab = 1:size(peakout,1)
                     CurPeakData = table({Group}, {AnName}, {layers{iLay}}, ...
                         {iTrial}, stimList(iStim), {itab}, peakout(itab,iTrial), ...
-                        latencyout(itab,iTrial),rmsout(itab,iTrial));
+                        latencyout(itab,iTrial),rmsout(itab,iTrial)); %#ok<*CCAT1,*PFBNS>
                     
                     PeakData = [PeakData; CurPeakData]; %#ok<*AGROW>
                     
@@ -161,9 +161,8 @@ save([Group '_' Condition '_AvrecAll'],'AvrecAll','PeakofAvg');
 PeakData.Properties.VariableNames = {'Group','Animal','Layer','trial',...
     'ClickFreq','OrderofClick','PeakAmp','PeakLat','RMS'};
 
-% save the table in the main folder - needs to be moved to the Julia folder
-% for stats
-cd(homedir); cd datastructs;
+% save the table in the output folder 
+cd(homedir); cd output;
 if exist('TracePeaks','dir')
     cd TracePeaks;
 else

@@ -18,7 +18,7 @@ if matches(Condition,'NoiseBurst1') || ...
     stimList = 70;
     thisUnit = 'dB';
     stimDur  = 100*sr_mult; % ms
-    stimITI  = 3000*sr_mult;
+    stimITI  = 1000*sr_mult; % 1000 ms included but 3000 ITI actual
     thisTag  = 'noise'; 
     
 elseif matches(Condition,'Spontaneous') || ...
@@ -33,20 +33,20 @@ elseif matches(Condition,'ClickTrain')
     stimList = 40;
     thisUnit = 'Hz';
     stimDur  = 2000*sr_mult; % ms
-    stimITI  = 3000*sr_mult;
-    thisTag  = 'ClickRate';
+    stimITI  = 1000*sr_mult;  % 1000 ms included but 3000 ITI actual
+    thisTag  = 'ClickRatePV';
     
     
 elseif matches(Condition,'gapASSR')
     % 10 gaps every 25 ms from onset to onset (40 hz)
     % 250 ms noise, 250 ms gap-noise, etc. , 250 noise
-    % 10 presentations of gap-noise
+    % 6 presentations of gap-noise
     % noiseonset = [0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000];
     % gaponset = [250, 750, 1250, 1750, 2250, 2750, 3250, 3750, 4250, 4750];
     stimList = [4, 6, 8, 10];
     thisUnit = '[ms] gap width';
-    stimDur  = 5250*sr_mult; % ms
-    stimITI  = 500*sr_mult;
-    thisTag  = 'gapASSRRate';
+    stimDur  = 3250*sr_mult; % ms
+    stimITI  = 500*sr_mult;  % 500 ITI actual
+    thisTag  = 'GapASSRRatePV';
 
 end

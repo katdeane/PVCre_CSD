@@ -59,7 +59,7 @@ for i1 = 1:entries
                 
                 if exist([name '_' measurement '_LFP.xdat.json'],'file')
                     file = [name '_' measurement '_LFP'];
-                    disp(['Analyzing animal: ' file])
+                    disp(['Analyzing measurement: ' file])
                     tic
                     [StimIn, DataIn] = FileReaderLFP(file,str2num(channels{iA}));
 
